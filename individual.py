@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-def combinations(m, n):
-    # базовый случай
-    if m == 0 or m == n:
+def power_recursive(x, n):
+    if n == 0:
         return 1
-    # рекурсивный случай
-    return combinations(m, n-1) + combinations(m-1, n-1)
-
+    elif n < 0:
+        return 1 / power_recursive(x, abs(n))
+    else:
+        return x * power_recursive(x, n - 1)
 
 if __name__ == '__main__':
-    m = 4
-    n = 8
-    result = combinations(m, n)
-    print(f"Число сочетаний из {n} по {m} равно {result}")
+    x = float(input("Введите значение x: "))
+    n = int(input("Введите значение n: "))
+
+    result = power_recursive(x, n)
+    print("Результат:", result)
